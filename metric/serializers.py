@@ -1,9 +1,28 @@
 from rest_framework import serializers
 
-from .models import Metric
+from .models import Quote, OrderTracking, Order, Budget
 
 
-class MetricSerializer(serializers.ModelSerializer):
+class QuoteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Metric
+        model = Quote
         fields = '__all__'
+        depth = 1
+
+class OrderTrackingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderTracking
+        fields = '__all__'
+        depth = 1
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+        depth = 1
+
+class BudgetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Budget
+        fields = '__all__'
+        depth = 1
