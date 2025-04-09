@@ -15,13 +15,20 @@ class MetricViewSet(ModelViewSet):
     authentication_classes = [TokenAuthentication, ]
 
     def list(self, request, *args, **kwargs):
+        total_quote = 0
         quote = Quote.objects.all()
+        for q in quote:
+            total_quote += q.value
         quote_data = QuoteSerializer(quote, many=True)
+
 
         budget = Budget.objects.all()
         budget_data = BudgetSerializer(budget, many=True)
 
+        total_order = 0
         order = Order.objects.all()
+        for o in order:
+            total_order += o.value
         order_data = OrderSerializer(order, many=True)
 
         order_tracking = OrderTracking.objects.all()
@@ -29,8 +36,10 @@ class MetricViewSet(ModelViewSet):
 
         return Response(data={
             'quote': quote_data.data,
+            'total_quote': total_quote,
             'budget': budget_data.data,
             'order': order_data.data,
+            'total_order': total_order,
             'order_tracking': order_tracking_data.data
         }, status=200)
 

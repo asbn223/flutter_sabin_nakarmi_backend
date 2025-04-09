@@ -33,7 +33,11 @@ class Budget(models.Model):
 class OrderTracking(models.Model):
     order_id = models.CharField(max_length=100, unique=True, default=uuid.uuid4)
     from_address = models.CharField(max_length=255)
+    from_lat = models.FloatField(default=0.0)
+    from_lon = models.FloatField(default=0.0)
     to_address = models.CharField(max_length=255)
+    to_lat = models.FloatField(default=0.0)
+    to_lon = models.FloatField(default=0.0)
     current_status = models.CharField(max_length=255)
     current_location_lat = models.FloatField()
     current_location_lon = models.FloatField()
