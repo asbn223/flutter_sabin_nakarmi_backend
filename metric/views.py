@@ -3,8 +3,10 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from product.models import Product
 from metric.models import Quote, Budget, OrderTracking, Order
 from metric.serializers import QuoteSerializer, BudgetSerializer, OrderSerializer, OrderTrackingSerializer
+from product.serializers import ProductSerializer
 
 
 # Create your views here.
@@ -34,12 +36,16 @@ class MetricViewSet(ModelViewSet):
         order_tracking = OrderTracking.objects.all()
         order_tracking_data = OrderTrackingSerializer(order_tracking, many=True)
 
+        products = Product.objects.all()
+        products_data = ProductSerializer(products, many=True)
+
         return Response(data={
             'quote': quote_data.data,
             'total_quote': total_quote,
             'budget': budget_data.data,
             'order': order_data.data,
             'total_order': total_order,
-            'order_tracking': order_tracking_data.data
+            'order_tracking': order_tracking_data.data,
+            'products': products_data.data,
         }, status=200)
 
