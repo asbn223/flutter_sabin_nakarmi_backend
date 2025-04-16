@@ -34,6 +34,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/users/', include('user.urls')),
+    path('api/orders/', include('order.urls')),
 ]
 
 
