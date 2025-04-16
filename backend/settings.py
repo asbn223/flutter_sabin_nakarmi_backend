@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'metric',
     'product',
     'team',
+    'order'
 ]
 
 MIDDLEWARE = [
