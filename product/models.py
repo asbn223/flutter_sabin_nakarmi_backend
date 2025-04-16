@@ -13,3 +13,6 @@ class Product(models.Model):
     specifications = models.JSONField(default=dict)
     materials = models.TextField()
     images = models.JSONField(default=list)  # List of image URLs
+
+    def __str__(self):
+        return self.name
