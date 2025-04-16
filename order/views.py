@@ -9,6 +9,8 @@ class OrderRequestListView(generics.ListAPIView):
     authentication_classes = (TokenAuthentication, )
 
     def get_queryset(self):
+        if self.request.user.is_admin:
+            return OrderRequest.objects.all().order_by('-requested_at')
         return OrderRequest.objects.filter(user=self.request.user).order_by('-requested_at')
 
 class OrderRequestCreateView(generics.CreateAPIView):

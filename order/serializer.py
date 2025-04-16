@@ -6,3 +6,4 @@ class OrderRequestSerializer(serializers.ModelSerializer):
         model = OrderRequest
         fields = ['id', 'user', 'product', 'size', 'color', 'requested_at']
         read_only_fields = ['requested_at']
+        depth = 2
